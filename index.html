@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A premium graduation invitation in Da Nang."
+    />
+    <title>Graduation Invitation</title>
+    <link rel="preload" as="image" href="assets/background_dut.png" />
+    <link rel="preload" as="image" href="assets/frame1_dut.png" />
+    <link rel="preload" as="image" href="assets/frame3_dut.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --burgundy: #800020;
+        --burgundy-deep: #4f0015;
+        --champagne: #d7b56d;
+        --champagne-light: #f1dfad;
+        --ivory: #fff8ec;
+        --warm-white: #fffdf8;
+        --ink: #241016;
+        --muted: #7a6262;
+        --shadow: rgba(61, 18, 24, 0.18);
+        --serif: "Cormorant Garamond", "Playfair Display", "Bodoni 72",
+          "Didot", Georgia, serif;
+        --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--ivory);
+        color: var(--ink);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        overflow: hidden;
+        font-family: var(--sans);
+        background: var(--ivory);
+      }
+
+      main {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      @supports (height: 100svh) {
+        main {
+          height: 100svh;
+        }
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .hero-animation-section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        isolation: isolate;
+        background:
+          radial-gradient(circle at 50% 42%, rgba(255, 248, 236, 0.2), transparent 42%),
+          linear-gradient(135deg, #15070a 0%, #4f0015 52%, #160609 100%);
+      }
+
+      @supports (height: 100svh) {
+        .hero-animation-section {
+          height: 100svh;
+        }
+      }
+
+      .scene-stage {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        background: transparent;
+        transform-origin: center center;
+        will-change: transform;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .scene-stage:focus-visible {
+        outline: 2px solid var(--champagne-light);
+        outline-offset: -14px;
+      }
+
+      .scene-stage:disabled {
+        cursor: default;
+      }
+
+      .invitation-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        user-select: none;
+        pointer-events: none;
+        will-change: opacity;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+
+      .base-layer {
+        z-index: 1;
+      }
+
+      .frame-layer {
+        z-index: 2;
+      }
+
+      .frame-1 {
+        opacity: 1;
+      }
+
+      .frame-3 {
+        opacity: 0;
+      }
+
+      .hero-vignette {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+        background:
+          linear-gradient(to bottom, rgba(16, 4, 7, 0.08), transparent 26%, transparent 62%, rgba(16, 4, 7, 0.18)),
+          radial-gradient(circle at 50% 48%, transparent 52%, rgba(16, 4, 7, 0.3) 100%);
+        mix-blend-mode: multiply;
+      }
+
+      .hero-monogram {
+        position: absolute;
+        top: clamp(18px, 3.2vw, 44px);
+        left: 50%;
+        z-index: 4;
+        display: grid;
+        width: clamp(48px, 6vw, 74px);
+        aspect-ratio: 1;
+        place-items: center;
+        border: 1px solid rgba(241, 223, 173, 0.72);
+        border-radius: 50%;
+        color: var(--champagne-light);
+        font-family: var(--serif);
+        font-size: clamp(1.25rem, 2vw, 1.85rem);
+        font-weight: 600;
+        line-height: 1;
+        text-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+        transform: translateX(-50%);
+      }
+
+      .sound-toggle {
+        position: fixed;
+        top: clamp(18px, 3.2vw, 44px);
+        right: clamp(18px, 4vw, 48px);
+        z-index: 20;
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        border: 1px solid rgba(241, 223, 173, 0.68);
+        border-radius: 50%;
+        color: var(--champagne-light);
+        cursor: pointer;
+        background: rgba(20, 6, 8, 0.26);
+        box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(12px);
+        transition:
+          background 180ms ease,
+          border-color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .sound-toggle:hover {
+        border-color: var(--champagne-light);
+        background: rgba(128, 0, 32, 0.34);
+        transform: translateY(-1px);
+      }
+
+      .sound-toggle span {
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+
+      .back-button {
+        position: fixed;
+        top: clamp(18px, 3.2vw, 44px);
+        left: clamp(18px, 4vw, 48px);
+        z-index: 20;
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        border: 1px solid rgba(241, 223, 173, 0.68);
+        border-radius: 50%;
+        color: var(--champagne-light);
+        cursor: pointer;
+        background: rgba(20, 6, 8, 0.26);
+        box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(12px);
+        transition:
+          background 180ms ease,
+          border-color 180ms ease,
+          transform 180ms ease;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .back-button:hover {
+        border-color: var(--champagne-light);
+        background: rgba(128, 0, 32, 0.34);
+        transform: translateY(-1px);
+      }
+
+      .back-button span {
+        font-size: 1.6rem;
+        line-height: 1;
+        margin-bottom: 2px;
+        margin-right: 2px;
+      }
+
+      .action-indicator {
+        position: absolute;
+        right: clamp(18px, 5vw, 72px);
+        bottom: clamp(18px, 4vw, 48px);
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--warm-white);
+        opacity: 0;
+        transform: translateY(16px);
+        font-family: var(--sans);
+        font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        text-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+        will-change: opacity, transform;
+      }
+
+      .action-indicator::before {
+        width: 42px;
+        height: 1px;
+        content: "";
+        background: linear-gradient(90deg, transparent, var(--champagne-light));
+      }
+
+      .action-indicator::after {
+        width: 9px;
+        height: 9px;
+        content: "";
+        border-right: 1px solid var(--champagne-light);
+        border-bottom: 1px solid var(--champagne-light);
+        transform: rotate(45deg) translateY(-2px);
+      }
+
+      .details-section {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        display: grid;
+        min-height: 100%;
+        padding: clamp(36px, 6vw, 76px) clamp(18px, 5vw, 72px);
+        overflow-y: auto;
+        place-items: center;
+        opacity: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 50% 44%, rgba(255, 248, 236, 0.38), rgba(128, 0, 32, 0.2) 54%, rgba(22, 2, 8, 0.62) 100%),
+          linear-gradient(180deg, rgba(255, 248, 236, 0.12), rgba(128, 0, 32, 0.28)),
+          url("assets/background_dut.png");
+        background-position: center;
+        background-size: cover;
+        will-change: opacity, transform;
+      }
+
+      .details-shell {
+        width: min(1120px, 100%);
+        padding: clamp(28px, 4vw, 52px);
+        border: 1px solid rgba(241, 223, 173, 0.38);
+        border-radius: 8px;
+        background:
+          linear-gradient(135deg, rgba(128, 0, 32, 0.2), rgba(255, 248, 236, 0.36) 42%, rgba(215, 181, 109, 0.16)),
+          rgba(255, 248, 236, 0.2);
+        box-shadow: 0 32px 100px rgba(32, 4, 10, 0.34);
+        backdrop-filter: blur(18px) saturate(1.12);
+        margin: 0 auto;
+      }
+
+      .invitation-header {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.7fr);
+        gap: clamp(36px, 7vw, 92px);
+        align-items: end;
+        padding-bottom: clamp(38px, 6vw, 76px);
+        border-bottom: 1px solid rgba(241, 223, 173, 0.34);
+      }
+
+      .eyebrow {
+        margin: 0 0 16px;
+        color: #8b102d;
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 22px;
+        color: #4b0014;
+        text-shadow: 0 12px 36px rgba(255, 248, 236, 0.34);
+        font-family: var(--serif);
+        font-size: clamp(2.25rem, 5.5vw, 4.8rem);
+        font-weight: 600;
+        line-height: 0.92;
+      }
+
+      .lead {
+        max-width: 610px;
+        margin-bottom: 0;
+        color: #4b2830;
+        font-family: var(--serif);
+        font-size: clamp(1.25rem, 1.8vw, 1.9rem);
+        line-height: 1.26;
+      }
+
+      .date-panel {
+        padding: clamp(24px, 4vw, 40px);
+        border: 1px solid rgba(241, 223, 173, 0.52);
+        border-radius: 8px;
+        background:
+          linear-gradient(135deg, rgba(128, 0, 32, 0.16), rgba(255, 248, 236, 0.42)),
+          rgba(255, 248, 236, 0.18);
+        box-shadow: 0 22px 70px rgba(32, 4, 10, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .date-panel p {
+        margin: 0;
+      }
+
+      .date-kicker {
+        color: #8b102d;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .date-number {
+        margin: 12px 0 4px;
+        color: #4b0014;
+        font-family: var(--serif);
+        font-size: clamp(2.25rem, 5.5vw, 4.8rem);
+        font-weight: 600;
+        line-height: 0.82;
+      }
+
+      .date-month {
+        color: #4b2830;
+        font-family: var(--serif);
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        font-weight: 500;
+        margin-bottom: 12px !important;
+      }
+
+      .date-time {
+        margin-top: 22px;
+        color: #61454a;
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.55fr) minmax(0, 1fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: stretch;
+        padding-top: clamp(38px, 6vw, 72px);
+      }
+
+      .detail-list {
+        display: grid;
+        gap: 18px;
+        align-content: start;
+      }
+
+      .detail-item {
+        padding: 24px 0;
+        border-bottom: 1px solid rgba(241, 223, 173, 0.3);
+      }
+
+      .detail-label {
+        margin: 0 0 8px;
+        color: #8b102d;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .detail-value {
+        margin: 0;
+        color: #35151e;
+        font-family: var(--serif);
+        font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+        font-weight: 500;
+        line-height: 1.0;
+      }
+
+      .detail-note {
+        margin: 10px 0 0;
+        color: #5a4146;
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+
+      .map-frame {
+        min-height: 520px;
+        overflow: hidden;
+        border: 1px solid rgba(241, 223, 173, 0.46);
+        border-radius: 8px;
+        background: rgba(255, 248, 236, 0.2);
+        box-shadow: 0 24px 80px rgba(32, 4, 10, 0.26);
+        backdrop-filter: blur(10px);
+      }
+
+      .map-frame iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 520px;
+        border: 0;
+        filter: saturate(0.92) contrast(1.02);
+      }
+
+      .closing-line {
+        max-width: 760px;
+        margin: clamp(48px, 7vw, 84px) auto 0;
+        color: #4b0014;
+        text-shadow: 0 12px 34px rgba(255, 248, 236, 0.34);
+        font-family: var(--serif);
+        font-size: clamp(1.75rem, 3.5vw, 3.1rem);
+        font-weight: 500;
+        line-height: 1.16;
+        text-align: center;
+      }
+
+      .closing-line span {
+        color: var(--champagne);
+      }
+
+      @media (max-width: 900px) {
+        .invitation-header,
+        .details-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .date-panel {
+          max-width: 440px;
+        }
+
+        .map-frame,
+        .map-frame iframe {
+          min-height: 420px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .hero-monogram {
+          top: 14px;
+        }
+
+        .action-indicator {
+          right: 50%;
+          bottom: 20px;
+          width: max-content;
+          max-width: calc(100vw - 36px);
+          transform: translate(50%, 16px);
+          font-size: 0.66rem;
+          letter-spacing: 0.12em;
+        }
+
+        .action-indicator::before {
+          width: 28px;
+        }
+
+        .details-section {
+          padding-inline: 18px;
+        }
+
+        .details-shell {
+          padding: 22px;
+        }
+
+        h1 {
+          font-size: clamp(3rem, 18vw, 5.2rem);
+        }
+
+        .date-panel {
+          padding: 24px;
+        }
+      }
+
+      .countdown-container {
+        position: absolute;
+        top: clamp(120px, 16vw, 170px);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: var(--champagne-light);
+        font-family: var(--sans);
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        pointer-events: none;
+        will-change: opacity, transform;
+      }
+
+      .countdown-title {
+        font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        text-align: center;
+      }
+
+      .countdown-timer {
+        display: flex;
+        gap: clamp(8px, 2vw, 16px);
+      }
+
+      .countdown-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(20, 6, 8, 0.4);
+        padding: 6px 12px;
+        border: 1px solid rgba(241, 223, 173, 0.3);
+        border-radius: 6px;
+        backdrop-filter: blur(8px);
+        min-width: 50px;
+      }
+
+      .countdown-value {
+        font-family: var(--serif);
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        font-weight: 600;
+        line-height: 1;
+        color: var(--warm-white);
+      }
+
+      .countdown-label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 2px;
+        color: var(--champagne);
+      }
+
+      @media (max-width: 620px) {
+        .countdown-container {
+          top: 100px;
+          bottom: auto;
+        }
+        .countdown-item {
+          min-width: 45px;
+          padding: 6px 8px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .frame-1 {
+          opacity: 0;
+        }
+
+        .frame-3,
+        .action-indicator {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero-animation-section" aria-label="Graduation invitation envelope animation">
+        <button
+          class="scene-stage"
+          type="button"
+          data-scene-stage
+          data-invitation-trigger
+          aria-label="Open the graduation invitation"
+        >
+          <img
+            class="invitation-layer base-layer"
+            src="assets/background_dut.png"
+            alt=""
+            aria-hidden="true"
+            fetchpriority="high"
+          />
+          <img
+            class="invitation-layer frame-layer frame-1"
+            src="assets/frame1_dut.png"
+            alt="Closed premium graduation invitation envelope"
+            fetchpriority="high"
+          />
+          <img
+            class="invitation-layer frame-layer frame-3"
+            src="assets/frame3_dut.png"
+            alt="Open graduation invitation with card revealed"
+          />
+        </button>
+        <div class="hero-vignette" aria-hidden="true"></div>
+        <div class="action-indicator" data-action-indicator aria-live="polite">
+          Click the Letter to Open
+        </div>
+        <div class="countdown-container" data-countdown>
+          <div class="countdown-title">Lễ tốt nghiệp dự kiến 1/8/2026</div>
+          <div class="countdown-timer">
+            <div class="countdown-item">
+              <span class="countdown-value" id="cd-days">00</span>
+              <span class="countdown-label">Ngày</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="cd-hours">00</span>
+              <span class="countdown-label">Giờ</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="cd-minutes">00</span>
+              <span class="countdown-label">Phút</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="cd-seconds">00</span>
+              <span class="countdown-label">Giây</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section" aria-label="Graduation invitation details">
+        <div class="details-shell">
+          <div class="invitation-header">
+            <div>
+              <p class="eyebrow">Graduation Ceremony</p>
+              <h1>You are warmly invited</h1>
+              <p class="lead">
+                Mời mọi người đến để cùng toy unbox chiếc bằng tốt nghiệp nhéeee ✨
+              </p>
+              <p class="lead">
+                Có mặt là quà, chụp ảnh là bắt buộc 📸🤭🫵
+              </p>
+            </div>
+
+            <aside class="date-panel" aria-label="Ceremony date and time">
+              <p class="date-kicker">Save the Date</p>
+              <p class="date-month">August 1, 2026</p>
+              <p class="date-time">
+                Invite Everyone To Come At 9:00 AM<br />
+              </p>
+            </aside>
+          </div>
+
+          <div class="details-grid">
+            <div class="detail-list">
+              <article class="detail-item">
+                <p class="detail-label">Time</p>
+                <p class="detail-value">09:00</p>
+                <p class="detail-note">Thứ 7, Ngày 1 tháng 8 năm 2026</p>
+              </article>
+
+              <article class="detail-item">
+                <p class="detail-label">Location</p>
+                <p class="detail-value">54 Nguyễn Lương Bằng</p>
+                <p class="detail-note">TP Đà Nẵng</p>
+              </article>
+
+              <article class="detail-item">
+                <p class="detail-label">Dress Code</p>
+                <p class="detail-value">Thích gì mặc nấy</p>
+                <p class="detail-note">Có mặc là được 🤝</p>
+              </article>
+            </div>
+
+            <div class="map-frame" aria-label="Map to 54 Nguyen Luong Bang, Da Nang">
+              <iframe
+                title="54 Nguyen Luong Bang, Da Nang map"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://maps.google.com/maps?q=54%20Nguy%E1%BB%85n%20L%C6%B0%C6%A1ng%20B%E1%BA%B1ng,%20%C4%90%C3%A0%20N%E1%BA%B5ng&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+      <button
+        class="sound-toggle"
+        type="button"
+        data-sound-toggle
+        aria-label="Turn sound off"
+        aria-pressed="true"
+      >
+        <span aria-hidden="true">♪</span>
+      </button>
+      <button
+        class="back-button"
+        type="button"
+        data-back-button
+        aria-label="Go back"
+      >
+        <span aria-hidden="true">‹</span>
+      </button>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const hasGsap = window.gsap;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const sceneStage = document.querySelector("[data-scene-stage]");
+        const soundToggle = document.querySelector("[data-sound-toggle]");
+        const soundIcon = soundToggle.querySelector("span");
+        const backButton = document.querySelector("[data-back-button]");
+        const indicator = document.querySelector("[data-action-indicator]");
+        const countdown = document.querySelector("[data-countdown]");
+        const detailsSection = document.querySelector(".details-section");
+        const frame1 = document.querySelector(".frame-1");
+        const frame3 = document.querySelector(".frame-3");
+        let isOpen = false;
+        let detailsVisible = false;
+        let soundEnabled = true;
+        let audioContext;
+        let ambientNodes = [];
+        let ambientTimer;
+
+        if (!hasGsap || reduceMotion) {
+          indicator.style.opacity = "1";
+          indicator.style.transform = window.matchMedia("(max-width: 620px)").matches
+            ? "translate(50%, 0)"
+            : "translateY(0)";
+          sceneStage.addEventListener("click", () => {
+            if (detailsVisible) {
+              return;
+            }
+
+            if (!isOpen) {
+              isOpen = true;
+              frame1.style.opacity = "0";
+              frame3.style.opacity = "1";
+              indicator.textContent = "Click tiếp để xem chi tiết";
+              backButton.style.opacity = "1";
+              backButton.style.visibility = "visible";
+              if (countdown) countdown.style.opacity = "0";
+              return;
+            }
+
+            detailsVisible = true;
+            detailsSection.style.opacity = "1";
+            detailsSection.style.pointerEvents = "auto";
+            indicator.style.opacity = "0";
+          });
+
+          backButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (detailsVisible) {
+              detailsVisible = false;
+              detailsSection.style.opacity = "0";
+              detailsSection.style.pointerEvents = "none";
+              indicator.style.opacity = "1";
+              indicator.textContent = "Click tiếp để xem chi tiết";
+            } else if (isOpen) {
+              isOpen = false;
+              frame3.style.opacity = "0";
+              frame1.style.opacity = "1";
+              indicator.textContent = "Click the Letter to Open";
+              backButton.style.opacity = "0";
+              backButton.style.visibility = "hidden";
+              if (countdown) countdown.style.opacity = "1";
+            }
+          });
+          return;
+        }
+
+        gsap.set([frame1, frame3, indicator, countdown, sceneStage, detailsSection, backButton], {
+          force3D: true
+        });
+        gsap.set(frame1, { autoAlpha: 1 });
+        gsap.set(frame3, { autoAlpha: 0 });
+        gsap.set(indicator, { autoAlpha: 1, y: 0 });
+        gsap.set(countdown, { autoAlpha: 1, y: 0 });
+        gsap.set(detailsSection, { autoAlpha: 0, y: 24 });
+        gsap.set(backButton, { autoAlpha: 0 });
+
+        const getAudioContext = () => {
+          if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          }
+
+          if (audioContext.state === "suspended") {
+            audioContext.resume().catch(() => {});
+          }
+
+          return audioContext;
+        };
+
+        const playTone = (context, frequency, start, duration, gainValue) => {
+          const oscillator = context.createOscillator();
+          const gain = context.createGain();
+
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(frequency, start);
+          oscillator.frequency.exponentialRampToValueAtTime(frequency * 1.08, start + duration);
+          gain.gain.setValueAtTime(0.0001, start);
+          gain.gain.exponentialRampToValueAtTime(gainValue, start + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+          oscillator.start(start);
+          oscillator.stop(start + duration + 0.02);
+        };
+
+        const playPaperSweep = (context, start) => {
+          const duration = 0.42;
+          const bufferSize = Math.max(1, Math.floor(context.sampleRate * duration));
+          const buffer = context.createBuffer(1, bufferSize, context.sampleRate);
+          const data = buffer.getChannelData(0);
+
+          for (let i = 0; i < bufferSize; i += 1) {
+            const fade = 1 - i / bufferSize;
+            data[i] = (Math.random() * 2 - 1) * fade * 0.18;
+          }
+
+          const source = context.createBufferSource();
+          const filter = context.createBiquadFilter();
+          const gain = context.createGain();
+
+          filter.type = "highpass";
+          filter.frequency.setValueAtTime(900, start);
+          filter.frequency.exponentialRampToValueAtTime(2400, start + duration);
+          gain.gain.setValueAtTime(0.0001, start);
+          gain.gain.exponentialRampToValueAtTime(0.045, start + 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+
+          source.buffer = buffer;
+          source.connect(filter);
+          filter.connect(gain);
+          gain.connect(context.destination);
+          source.start(start);
+        };
+
+        const playAmbientChime = () => {
+          if (!soundEnabled || !audioContext) {
+            return;
+          }
+
+          const now = audioContext.currentTime;
+          playTone(audioContext, 392, now, 1.4, 0.038);
+          playTone(audioContext, 523.25, now + 0.08, 1.6, 0.03);
+          playTone(audioContext, 659.25, now + 0.18, 1.8, 0.022);
+        };
+
+        const stopAmbientSound = () => {
+          if (!audioContext) {
+            return;
+          }
+
+          if (ambientTimer) {
+            clearInterval(ambientTimer);
+            ambientTimer = undefined;
+          }
+
+          ambientNodes.forEach((node) => {
+            try {
+              if (node.gain) {
+                node.gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.5);
+              }
+
+              if (node.oscillator) {
+                node.oscillator.stop(audioContext.currentTime + 0.55);
+              }
+            } catch (error) {
+              // The node may already be stopped.
+            }
+          });
+          ambientNodes = [];
+        };
+
+        const startAmbientSound = () => {
+          if (!soundEnabled) {
+            return;
+          }
+
+          const context = getAudioContext();
+          if (ambientNodes.length > 0) {
+            return;
+          }
+
+          const master = context.createGain();
+          const filter = context.createBiquadFilter();
+          const now = context.currentTime;
+
+          master.gain.setValueAtTime(0.0001, now);
+          master.gain.exponentialRampToValueAtTime(0.06, now + 1.2);
+          filter.type = "lowpass";
+          filter.frequency.setValueAtTime(1350, now);
+          filter.Q.setValueAtTime(0.6, now);
+          filter.connect(master);
+          master.connect(context.destination);
+
+          [196, 246.94, 329.63].forEach((frequency, index) => {
+            const oscillator = context.createOscillator();
+            const gain = context.createGain();
+
+            oscillator.type = index === 0 ? "sine" : "triangle";
+            oscillator.frequency.setValueAtTime(frequency, now);
+            gain.gain.setValueAtTime(index === 0 ? 0.28 : 0.14, now);
+            oscillator.connect(gain);
+            gain.connect(filter);
+            oscillator.start(now);
+            ambientNodes.push({ oscillator, gain });
+          });
+
+          ambientNodes.push({ gain: master });
+          playAmbientChime();
+          ambientTimer = setInterval(playAmbientChime, 7200);
+        };
+
+        const playOpenSound = () => {
+          if (!soundEnabled) {
+            return;
+          }
+
+          const context = getAudioContext();
+          const now = context.currentTime;
+          playPaperSweep(context, now + 0.02);
+          playTone(context, 523.25, now + 0.18, 0.42, 0.075);
+          playTone(context, 659.25, now + 0.28, 0.52, 0.06);
+          playTone(context, 783.99, now + 0.42, 0.72, 0.05);
+        };
+
+        const showDetails = () => {
+          if (detailsVisible) {
+            return;
+          }
+
+          detailsVisible = true;
+          sceneStage.disabled = true;
+          detailsSection.style.pointerEvents = "auto";
+          indicator.textContent = "Ceremony Details";
+
+          gsap
+            .timeline({ defaults: { ease: "power3.inOut" } })
+            .to(indicator, { autoAlpha: 0, y: 14, duration: 0.35 }, 0)
+            .to(sceneStage, { autoAlpha: 0, scale: 1.08, filter: "blur(6px) saturate(1.02)", duration: 0.95 }, 0)
+            .to(".hero-monogram", { autoAlpha: 0, y: -16, duration: 0.55 }, 0)
+            .to(detailsSection, { autoAlpha: 1, y: 0, duration: 0.95 }, 0.18);
+        };
+
+        const hideDetails = () => {
+          detailsVisible = false;
+          sceneStage.disabled = false;
+          detailsSection.style.pointerEvents = "none";
+          indicator.textContent = "Click tiếp để xem chi tiết";
+
+          gsap
+            .timeline({ defaults: { ease: "power3.inOut" } })
+            .to(detailsSection, { autoAlpha: 0, y: 24, duration: 0.95 }, 0)
+            .to(".hero-monogram", { autoAlpha: 1, y: 0, duration: 0.55 }, 0.4)
+            .to(sceneStage, { autoAlpha: 1, scale: 1, filter: "blur(0px) saturate(1)", duration: 0.95 }, 0)
+            .to(indicator, { autoAlpha: 1, y: 0, duration: 0.35 }, 0.6);
+        };
+
+        const closeInvitation = () => {
+          isOpen = false;
+          sceneStage.disabled = true;
+          sceneStage.setAttribute("aria-label", "Open the graduation invitation");
+          indicator.textContent = "Click the Letter to Open";
+          
+          gsap.to(backButton, { autoAlpha: 0, duration: 0.45 });
+
+          gsap
+            .timeline({
+              defaults: { ease: "power2.inOut" },
+              onComplete: () => {
+                sceneStage.disabled = false;
+              }
+            })
+            .to(frame3, { autoAlpha: 0, duration: 1.45 }, 0)
+            .to(frame1, { autoAlpha: 1, duration: 1.45 }, 0)
+            .to(countdown, { autoAlpha: 1, duration: 0.45, delay: 1.0 }, 0)
+            .fromTo(
+              indicator,
+              { autoAlpha: 0, y: 14 },
+              { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" },
+              1.22
+            );
+        };
+
+        const openInvitation = () => {
+          startAmbientSound();
+
+          if (isOpen) {
+            showDetails();
+            return;
+          }
+
+          isOpen = true;
+          sceneStage.disabled = true;
+          sceneStage.setAttribute("aria-label", "Graduation invitation opened");
+          indicator.textContent = "Opening Invitation";
+          playOpenSound();
+          
+          gsap.to(backButton, { autoAlpha: 1, duration: 0.45, delay: 1.22 });
+
+          gsap
+            .timeline({
+              defaults: { ease: "power2.inOut" },
+              onComplete: () => {
+                sceneStage.disabled = false;
+                sceneStage.setAttribute("aria-label", "View graduation details");
+                indicator.textContent = "Click tiếp để xem chi tiết";
+              }
+            })
+            .to(frame1, { autoAlpha: 0, duration: 1.45 }, 0)
+            .to(frame3, { autoAlpha: 1, duration: 1.45 }, 0)
+            .to(countdown, { autoAlpha: 0, duration: 0.45 }, 0)
+            .fromTo(
+              indicator,
+              { autoAlpha: 0, y: 14 },
+              { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" },
+              1.22
+            );
+        };
+
+        soundToggle.addEventListener("click", (event) => {
+          event.stopPropagation();
+          soundEnabled = !soundEnabled;
+          soundToggle.setAttribute("aria-pressed", String(soundEnabled));
+          soundToggle.setAttribute(
+            "aria-label",
+            soundEnabled ? "Turn sound off" : "Turn sound on"
+          );
+          soundIcon.textContent = soundEnabled ? "♪" : "×";
+
+          if (soundEnabled) {
+            startAmbientSound();
+            playAmbientChime();
+          } else {
+            stopAmbientSound();
+          }
+        });
+
+        backButton.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (detailsVisible) {
+            hideDetails();
+          } else if (isOpen) {
+            closeInvitation();
+          }
+        });
+
+        sceneStage.addEventListener("click", openInvitation);
+        startAmbientSound();
+        document.addEventListener("pointerdown", startAmbientSound, { once: true });
+        document.addEventListener("keydown", startAmbientSound, { once: true });
+
+        // Countdown logic
+        const targetDate = new Date("2026-08-01T09:00:00").getTime();
+        const daysEl = document.getElementById("cd-days");
+        const hoursEl = document.getElementById("cd-hours");
+        const minutesEl = document.getElementById("cd-minutes");
+        const secondsEl = document.getElementById("cd-seconds");
+        let countdownInterval;
+
+        const updateCountdown = () => {
+          const now = new Date().getTime();
+          const distance = targetDate - now;
+
+          if (distance < 0) {
+            clearInterval(countdownInterval);
+            const titleEl = document.querySelector(".countdown-title");
+            if (titleEl) titleEl.textContent = "Lễ tốt nghiệp đang diễn ra!";
+            const timerEl = document.querySelector(".countdown-timer");
+            if (timerEl) timerEl.style.display = "none";
+            return;
+          }
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          if (daysEl) daysEl.textContent = days.toString().padStart(2, "0");
+          if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, "0");
+          if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, "0");
+          if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, "0");
+        };
+
+        if (daysEl) {
+          updateCountdown();
+          countdownInterval = setInterval(updateCountdown, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>
