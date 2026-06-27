@@ -535,9 +535,9 @@
 
       .countdown-container {
         position: absolute;
-        top: clamp(120px, 16vw, 170px);
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, calc(-50% - 12vh));
         z-index: 4;
         display: flex;
         flex-direction: column;
@@ -594,12 +594,27 @@
 
       @media (max-width: 620px) {
         .countdown-container {
-          top: 100px;
-          bottom: auto;
+          top: 50%;
+          transform: translate(-50%, calc(-50% - 12vw));
+          width: 100%;
+        }
+        .countdown-title {
+          font-size: 0.7rem;
+          margin-bottom: 4px;
+        }
+        .countdown-timer {
+          gap: 6px;
         }
         .countdown-item {
-          min-width: 45px;
-          padding: 6px 8px;
+          min-width: 40px;
+          padding: 4px 6px;
+          border-radius: 4px;
+        }
+        .countdown-value {
+          font-size: 1.1rem;
+        }
+        .countdown-label {
+          font-size: 0.55rem;
         }
       }
 
